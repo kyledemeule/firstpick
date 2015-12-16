@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>Rosters</h1>
+    <div class="container">
+        Here are your rosters:
+        {% for team in teams %}
+            <dl>
+                <dt>Team {{ team }}:</dt>
+                {% for player in teams[team] %}
+                    <dd>{{ player["name"] }}</dd>
+                {% endfor %}
+            </dl>
+        {% endfor %}
+    </div>
+{% endblock %}

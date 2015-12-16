@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, abort
+import lib.picker as picker
+import util
 application = Flask(__name__)
 
 REVIEW_PAGE_LENGTH = 10
@@ -7,15 +9,14 @@ REVIEW_PAGE_LENGTH = 10
 def index():
     return render_template('index.html')
 
-@application.route("/roster")
+@application.route("/roster", methods=['POST'])
 def roster():
-    search_type = request.args.get('search_type').strip()
-    search_term = request.args.get('search_term').strip()
-    if search_type == "team":
-        return redirect(url_for('product', asin=search_term))
+    players = util.parse_params(request.form)
+    teams = picker.pick_teams(players)
+    if teams:
+        return render_template('roster.html', teams=teams)
     else:
-        # include a message
-        redirect(url_for('index'))
+        abort(500)
 
 if __name__ == "__main__":
     application.run(debug=True)
