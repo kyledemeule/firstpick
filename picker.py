@@ -84,13 +84,12 @@ def main():
         make_person("John Doe9", 1),
         make_person("John Doe10", 1),
     ]
-    people2 = [
+    people = [
         make_person("John Doe1", 4),
-        make_person("John Doe1", 4),
+        make_person("John Doe1", 3),
         make_person("John Doe2", 3),
-        make_person("John Doe2", 1),
-        make_person("John Doe3", 1),
-        make_person("John Doe4", 1),
+        make_person("John Doe2", 2),
+        make_person("John Doe4", 3),
     ]
     teams = pick_teams(people)
     print_teams(teams)
