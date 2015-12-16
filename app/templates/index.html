@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>Generat Roster</h1>
+    <div class="container">
+        Enter list of players and their approximate skill level and we'll generate a balanced roster!
+        <form action="{{ url_for('roster') }}" method=post class=add-entry>
+            <input type="hidden" name="search_type" value="product">
+            <table id="player-list">
+                <tr>
+                    <th align=left>Name</th>
+                    <th align=left>Skill Level</th>
+                    <th></th>
+                </tr>
+                {% include 'form_elements/player.html' %}
+            </table>
+            <button type="button" id="add-player">Add Player</button><input type=submit value="Generate Roster">
+        </form>
+        <table id="empty-player-row" style="visibility: hidden;">
+            {% include 'form_elements/player.html' %}
+        </table>
+    </div>
+{% endblock %}

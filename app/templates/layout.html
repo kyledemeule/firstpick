@@ -1,0 +1,30 @@
+<!doctype html>
+<head>
+    <title>FirstPick|Roster Generator</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="{{ url_for('index') }}">FirstPick</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><a href="{{ url_for('index') }}">Generate</a></li>
+          <li><a href="{{ url_for('index') }}">Previous Rosters</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+<div class="container main">
+  {% block body %}{% endblock %}
+</div> <!-- /container -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+</body>
