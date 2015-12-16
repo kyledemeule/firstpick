@@ -1,27 +1,25 @@
 import random
 
-MAX_ITER = 1000
-
 def make_person(name, skill=None):
     return {
         "name": name,
         "skill": skill
     }
 
+def make_team():
+    return {
+        "num": 0,
+        "sum": 0,
+        "players": []
+    }
+
 def pick_teams(people):
     random.shuffle(people)
+    add_missing_skills(people)
     people = sorted(people, key=lambda p: -p["skill"])
 
-    team_a = {
-        "num": 0,
-        "sum": 0,
-        "players": []
-    }
-    team_b = {
-        "num": 0,
-        "sum": 0,
-        "players": []
-    }
+    team_a = make_team()
+    team_b = make_team()
 
     distribute_players(team_a, team_b, people)
     fix_balance(team_a, team_b)
@@ -38,6 +36,16 @@ def remove_player(team):
     team["num"] -= 1
     team["sum"] -= player["skill"]
     return player
+
+def add_missing_skills(players):
+    skills = [p["skill"] for p in players if p["skill"] != None]
+    if len(skills) > 0:
+        average_skill = sum(skills) / float(len(skills))
+    else:
+        average_skill = 1
+    for player in players:
+        if player["skill"] == None:
+            player["skill"] = average_skill
 
 def distribute_players(team_a, team_b, players):
     for player in players:
@@ -87,7 +95,7 @@ def main():
     people = [
         make_person("John Doe1", 4),
         make_person("John Doe1", 3),
-        make_person("John Doe2", 3),
+        make_person("John Doe2", None),
         make_person("John Doe2", 2),
         make_person("John Doe4", 3),
     ]
