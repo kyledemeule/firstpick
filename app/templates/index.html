@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block body %}
-    <h1>Generat Roster</h1>
+    <h1>Generate Roster</h1>
     <div class="container">
         Enter list of players and their approximate skill level and we'll generate a balanced roster!
-        <form action="{{ url_for('roster') }}" method=post class=add-entry>
+        <form action="{{ url_for('roster') }}" method=post class="add-entry form-inline" id="make-roster-form">
             <input type="hidden" name="search_type" value="product">
             <table id="player-list">
                 <tr>
@@ -13,7 +13,10 @@
                 </tr>
                 {% include 'form_elements/player.html' %}
             </table>
-            <button type="button" id="add-player">Add Player</button><input type=submit value="Generate Roster">
+            <button type="button" id="add-player" class="btn">Add Player</button><input type=submit value="Generate Roster" class="btn btn-success">
+            <br />
+            <input type="checkbox" name="save-roster" value="true" checked=checked> Save roster for future use.
+            Password protect roster: (optional) <input type="text" name="roster-password">
         </form>
         <table id="empty-player-row" style="visibility: hidden;">
             {% include 'form_elements/player.html' %}
